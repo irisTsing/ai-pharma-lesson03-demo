@@ -27,7 +27,6 @@
 
 ```bash
 # gpu1，已按 setup_gpu_env.sh 装好共享环境
-eval "$(bash demo_gpu_env/gpu_assign.sh 2023012345 --export)"
 export VS_PY=/public/AI药学实践/demo_vs/envs/vs/bin/python
 
 $VS_PY demo_pipeline/precompute_docking.py \

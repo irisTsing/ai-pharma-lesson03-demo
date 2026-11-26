@@ -2,8 +2,7 @@
 # 学生上 gpu1 后的第一件事：确认自己能看到哪张卡、torch 能不能用。
 # 用法：
 #   bash demo_gpu_env/check_gpu.sh            # 检查全部 8 张卡
-#   bash demo_gpu_env/check_gpu.sh 3          # 按学号分卡（学号 % 8），只检查自己那张
-#   CUDA_VISIBLE_DEVICES=3 bash check_gpu.sh  # 手动指定卡
+##   CUDA_VISIBLE_DEVICES=3 bash check_gpu.sh  # 手动指定卡
 set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

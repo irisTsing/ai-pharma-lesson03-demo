@@ -25,8 +25,7 @@
 ```bash
 cd demos/demo_vs
 
-# GPU 版（gpu1，先分卡）
-eval "$(bash demo_gpu_env/gpu_assign.sh 2023012345 --export)"
+# GPU 版（gpu1）
 bash demo_docking/run_demo.sh --device cuda
 
 # CPU 回退（开发机 / GPU 出问题时）
@@ -111,7 +110,7 @@ bash demo_docking/run_demo.sh --device cpu
 
 1. `unidock --version` 能正常执行，且 CUDA 运行时与驱动匹配（conda 包为 CUDA 12.x 构建）。
 2. `--gpu_batch` 一次传 10 个 pdbqt：输出目录里是否生成 10 个 `*_out.pdbqt`，`parse_sdf_affinity`/`parse_pose_affinity` 能否读到分数。
-3. `CUDA_VISIBLE_DEVICES=<学号%8>` 是否真的把进程固定到分配到的卡（`nvidia-smi` 对照）。
+3. `nvidia-smi` 里能看到自己的进程，显存占用在限制范围内。
 4. `--max_gpu_memory 2500` 下 3 人同卡并发是否稳定、是否 OOM。
 5. vina 与 Uni-Dock 对同一配体的打分差（`compare_cpu_gpu.csv` 的 `delta_kcal`）：fast 模式搜索更充分，
    分数通常会比 `--exhaustiveness 4` 更低（更负），属正常现象，比较时要说清协议不同。

@@ -80,7 +80,6 @@ gpu1 上先设共享环境的 python：
 
 ```bash
 export VS_PY=/public/AI药学实践/demo_vs/envs/vs/bin/python   # setup_gpu_env.sh 打印的实际路径
-eval "$(bash demos/demo_vs/demo_gpu_env/gpu_assign.sh 2023012345 --export)"
 bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 ```
 
@@ -118,7 +117,7 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 
 | 时间 | 内容 | 谁做 |
 | --- | --- | --- |
-| 0–5 min | 开场：8 卡 50 人怎么分（`gpu_assign.sh --table` 投屏）；学生分卡并跑 `check_gpu.sh` | 学生 |
+| 0–5 min | 开场：跑 `check_gpu.sh`，确认能看到卡、torch 能用 | 学生 |
 | 5–13 min | demo 1：ECFP4 + Tanimoto。先 CPU 跑一遍，再 `--device cuda` 跑，对比 `timing_s` 与加速比 | 学生 |
 | 13–21 min | demo 2：随机森林 vs MLP，看 `comparison_table.csv`；讲 DUD-E 诱饵偏倚 | 学生 |
 | 21–31 min | demo 3：Uni-Dock fast 模式跑 10 个配体，再看 vina CPU 对照 5 个，比单配体耗时 | 学生 |
@@ -126,57 +125,7 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 | 39–44 min | 讲评：EF1% 饱和、DUD-E analog bias、对接打分重叠、GPU 使用规范 | 教师 |
 | 44–50 min | 自由尝试：改参数（`--topk`、`--epochs`、`--unidock-mode`、盒子大小） | 学生 |
 
-分组错峰建议：同一张卡上的 6～7 人按学号尾号错开 1 分钟启动，避免 8 张卡同时满负荷。
 每组指定 1 名组长，负责在组内跑一次并把 `results/` 里的数字投屏对照。
-
-## 5. gpu1 上 50 人分卡方案（8 × RTX 3090 24 GB）
-
-### 5.1 分卡
-
-```bash
-# 学号 % 8 得到 GPU_ID，组号 = GPU_ID + 1
-eval "$(bash demo_gpu_env/gpu_assign.sh 2023012345 --export)"
-bash demo_gpu_env/check_gpu.sh
-```
-
-- 50 人：卡 0、1 各 7 人，卡 2～7 各 6 人。
-- `CUDA_VISIBLE_DEVICES` 只影响之后启动的进程；设完再启动程序。
-- 不要写进 `~/.bashrc`，换机器会指到不存在的卡。
-
-### 5.2 每 demo 的显存与耗时预算（按 6～7 人/卡估算）
-
-| demo | 单进程显存 | 同卡 7 人合计 | 单次耗时（3090，预计） | 说明 |
-| --- | --- | --- | --- | --- |
-| 0 环境自检 | <0.2 GB | <1.5 GB | 2 s | 矩阵乘自检很小 |
-| 1 Tanimoto | <0.3 GB | <2.1 GB | 指纹 CPU 3 s + GPU Tanimoto <1 s | 指纹矩阵 82 MB，分块后峰值约 0.25 GB |
-| 2 MLP 训练 | <0.3 GB | <2.1 GB | 30 epochs 约 1～3 s | 模型约 1.1 M 参数 |
-| 3 Uni-Dock（fast，10 配体） | **限 2.5 GB/人** | 17.5 GB | 预计数秒到数十秒/配体 | 必须加 `--max_gpu_memory 2500`，否则一人占满 24 GB |
-| 4 融合流水线 | 0（纯 CPU） | — | <30 s | 只读预计算 CSV |
-
-结论：24 GB 卡上 7 人 × 2.5 GB = 17.5 GB，留 6.5 GB 余量，可行。
-**Uni-Dock 默认 `--max_gpu_memory 0`（占满显存），不加限制一定 OOM，这是本 demo 最需要注意的一点。**
-
-### 5.3 错峰与排队
-
-- 按组错峰：第 1 组 0 秒启动，第 2 组 1 分钟后，依次错开。同一张卡上 7 人不要同时按下回车。
-- demo 3 最重：同一张卡分两批跑，每批 3～4 人，另一批先做 demo 4（纯 CPU，不占显存），再交换。
-- 每 demo 严格限时（见第 4 节表），教师用投屏计时；跑不完的组课后补，不占用下一段。
-- 若某张卡排队过长：允许临时换到空闲卡（先 `nvidia-smi` 看），但要 `export CUDA_VISIBLE_DEVICES=<新卡>` 重跑，不要两人用同一张卡硬挤。
-- 不建议把 50 人分到 8 张卡的 CPU 上跑 vina：每人 2～4 线程 × 50 人会严重超卖，CPU 版只用于 demo 1/2 的对照和学生本机回退。
-
-### 5.4 看谁在跑、OOM 了怎么办
-
-```bash
-nvidia-smi                                        # 8 张卡总览：显存、利用率、进程 PID
-nvidia-smi --query-compute-apps=pid,used_memory --format=csv   # 谁占了多少显存
-nvidia-smi -i 3                                   # 只看 3 号卡
-```
-
-- OOM（`torch.OutOfMemoryError` 或 Uni-Dock 的 CUDA error）：
-  1. 先 `nvidia-smi` 看这张卡还剩多少，确认是不是同卡同学占满；
-  2. 减小 `--max_gpu_memory`（如 1500）、减小 batch size；
-  3. 仍不行就等 1～2 分钟或换卡，不要连续重试把卡打满。
-- 进程卡死：`nvidia-smi` 找到 PID，`kill <PID>`；不要 `nvidia-smi --gpu-reset`（需要 root，且会影响同卡所有人）。
 
 ## 6. 实测数字汇总（开发机，CPU 与 GPU 均已实测）
 
@@ -222,7 +171,7 @@ demos/demo_vs/
 │   ├── drd3_box.json         对接盒子
 │   ├── demo3_ligands.csv     demo 3 的 10 个配体
 │   └── dock_ligands/         3D mol2 与 pdbqt
-├── demo_gpu_env/             环境自检、分卡（check_gpu.sh / gpu_assign.sh / run_demo.sh）
+├── demo_gpu_env/             环境自检（check_gpu.sh / run_demo.sh）
 ├── demo_similarity/          demo 1
 ├── demo_ml_screen/           demo 2
 ├── demo_docking/             demo 3
@@ -236,7 +185,7 @@ demos/demo_vs/
 3. demo 1 GPU Tanimoto 峰值显存 <0.5 GB，与 CPU 结果最大误差 <1e-5（脚本自动打印）。
 4. demo 2 MLP 单轮耗时与峰值显存（脚本写入 `metrics.json`）。
 5. demo 3 `--gpu_batch` 一次性传入 10 个配体，输出目录出现 10 个 `*_out.pdbqt`，`docking_scores.csv` 能解析到分数。
-6. `CUDA_VISIBLE_DEVICES` 分卡生效；`--max_gpu_memory 2500` 下 3 人同卡并发不 OOM。
+6. `--max_gpu_memory 2500` 下多人同卡并发不 OOM。
 7. vina 与 Uni-Dock 同一配体的打分差（`compare_cpu_gpu.csv`）：fast 模式搜索更充分，分数通常更负，属正常。
 
 ## 9. 说明

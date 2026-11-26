@@ -123,7 +123,6 @@ echo "==============================================================="
 echo " 给学生的三条命令"
 echo "==============================================================="
 echo "  export PATH=$ENV_PREFIX/bin:\$PATH"
-echo "  export CUDA_VISIBLE_DEVICES=\$(( 学号 % 8 ))     # 或 bash demos/demo_vs/demo_gpu_env/gpu_assign.sh 学号 --export"
 echo "  bash demos/demo_vs/demo_gpu_env/check_gpu.sh"
 echo
 echo "跑 demo 时用 VS_PY 指到共享环境的 python："
