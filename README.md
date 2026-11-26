@@ -127,7 +127,7 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 
 每组指定 1 名组长，负责在组内跑一次并把 `results/` 里的数字投屏对照。
 
-## 6. 实测数字汇总（开发机，CPU 与 GPU 均已实测）
+## 5. 实测数字汇总（开发机，CPU 与 GPU 均已实测）
 
 | 指标 | 实测值 |
 | --- | --- |
@@ -149,7 +149,7 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 | 红接验证（晶体配体重对接） | 最优 pose -7.36 kcal/mol，重原子平均最近距离 0.80 Å |
 | demo 4 预计算（1,981 个，20 进程 × 3 线程） | 本机约 2 小时（10～27 个/分钟）；gpu1 Uni-Dock 约 10 分钟 |
 
-## 7. 目录结构
+## 6. 目录结构
 
 ```
 demos/demo_vs/
@@ -178,7 +178,7 @@ demos/demo_vs/
 └── demo_pipeline/            demo 4（含教师预计算脚本与学生分析脚本）
 ```
 
-## 8. 首次在 gpu1 上运行时的检查清单（本机 A800 已跑通）
+## 7. 首次在 gpu1 上运行时的检查清单（本机 A800 已跑通）
 
 1. `nvidia-smi` 正常、`torch.cuda.is_available()` 为 True（`demo_gpu_env/check_gpu.sh`）。
 2. `setup_gpu_env.sh` 装出的环境里 `torch.version.cuda` 与驱动匹配；`unidock --version` 可执行。
@@ -188,7 +188,7 @@ demos/demo_vs/
 6. `--max_gpu_memory 2500` 下多人同卡并发不 OOM。
 7. vina 与 Uni-Dock 同一配体的打分差（`compare_cpu_gpu.csv`）：fast 模式搜索更充分，分数通常更负，属正常。
 
-## 9. 说明
+## 8. 说明
 
 - `demos/venv_chemprop` 是开发机现成的 CPU 环境（rdkit 2025.03.3、torch 2.3.1+cu121、chemprop 1.7.1）。
   gpu1 上不要用它：按 `setup_gpu_env.sh` 装到 `/public` 共享路径，学生统一 source。
