@@ -1,0 +1,35 @@
+MODEL 1
+REMARK VINA RESULT:    -8.339      0.000      0.000
+REMARK INTER + INTRA:          -8.339
+REMARK INTER:                  -8.339
+REMARK INTRA:                   0.000
+REMARK UNBOUND:                 0.000
+REMARK  Name = ZINC01418792
+REMARK  1 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C1_1  and  C2_2
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C   UNL     1       7.244  21.545  22.806  0.00  0.00    +0.039 C 
+ATOM      2  C   UNL     1       6.969  23.024  22.906  0.00  0.00    -0.076 C 
+ATOM      3  C   UNL     1       7.857  23.830  22.426  0.00  0.00    -0.027 C 
+ATOM      4  C   UNL     1       7.694  25.317  22.411  0.00  0.00    +0.040 C 
+ATOM      5  C   UNL     1       6.543  25.802  23.231  0.00  0.00    +0.092 C 
+ATOM      6  C   UNL     1       5.305  24.893  23.234  0.00  0.00    +0.092 C 
+ATOM      7  C   UNL     1       4.630  25.408  24.516  0.00  0.00    +0.231 C 
+ATOM      8  N   UNL     1       5.604  25.892  25.312  0.00  0.00    -0.193 N 
+ATOM      9  C   UNL     1       5.397  26.222  26.655  0.00  0.00    +0.134 A 
+ATOM     10  C   UNL     1       4.170  25.954  27.249  0.00  0.00    +0.046 A 
+ATOM     11  C   UNL     1       3.978  26.286  28.578  0.00  0.00    +0.025 A 
+ATOM     12  C   UNL     1       5.026  26.879  29.270  0.00  0.00    +0.059 A 
+ATOM     13 CL   UNL     1       4.838  27.317  30.940  0.00  0.00    -0.082 Cl
+ATOM     14  C   UNL     1       6.220  27.118  28.615  0.00  0.00    +0.133 A 
+ATOM     15  N   UNL     1       6.373  26.785  27.349  0.00  0.00    -0.238 NA
+ATOM     16  O   UNL     1       3.444  25.383  24.764  0.00  0.00    -0.274 OA
+ATOM     17  C   UNL     1       6.794  26.011  24.697  0.00  0.00    +0.231 C 
+ATOM     18  O   UNL     1       7.858  26.251  25.226  0.00  0.00    -0.274 OA
+ATOM     19  C   UNL     1       5.692  23.446  23.546  0.00  0.00    +0.043 C 
+ENDROOT
+TORSDOF 0
+ENDMDL

@@ -1,0 +1,75 @@
+MODEL 1
+REMARK VINA RESULT:    -7.237      0.000      0.000
+REMARK INTER + INTRA:         -11.712
+REMARK INTER:                 -10.621
+REMARK INTRA:                  -1.091
+REMARK UNBOUND:                -1.091
+REMARK  Name = ZINC09353507
+REMARK  10 active torsions:
+REMARK  status: ('A' for Active; 'I' for Inactive)
+REMARK    1  A    between atoms: C1_1  and  C2_2
+REMARK    2  A    between atoms: C2_2  and  C3_3
+REMARK    3  A    between atoms: C2_2  and  N1_8
+REMARK    4  A    between atoms: C7_9  and  C8_11
+REMARK    5  A    between atoms: C8_11  and  S2_12
+REMARK    6  A    between atoms: S2_12  and  C9_13
+REMARK    7  A    between atoms: C10_16  and  C17_25
+REMARK    8  A    between atoms: N4_17  and  C11_18
+REMARK    9  A    between atoms: C17_25  and  C18_26
+REMARK   10  A    between atoms: C17_25  and  N5_32
+REMARK                            x       y       z     vdW  Elec       q    Type
+REMARK                         _______ _______ _______ _____ _____    ______ ____
+ROOT
+ATOM      1  C   UNL     1       5.515  25.285  26.038  0.00  0.00    +0.197 A 
+ATOM      2  N   UNL     1       6.511  25.278  26.893  0.00  0.00    -0.122 NA
+ATOM      3  N   UNL     1       6.296  26.139  27.823  0.00  0.00    -0.127 NA
+ATOM      4  C   UNL     1       5.159  26.743  27.620  0.00  0.00    +0.187 A 
+ATOM      5  N   UNL     1       4.616  26.217  26.478  0.00  0.00    -0.270 N 
+ENDROOT
+BRANCH   5   6
+ATOM      6  C   UNL     1       3.394  26.564  25.882  0.00  0.00    +0.051 A 
+ATOM      7  C   UNL     1       2.264  25.794  26.117  0.00  0.00    +0.029 A 
+ATOM      8  C   UNL     1       1.060  26.140  25.533  0.00  0.00    +0.040 A 
+ATOM      9  C   UNL     1       0.984  27.248  24.705  0.00  0.00    +0.124 A 
+ATOM     10  F   UNL     1      -0.193  27.580  24.131  0.00  0.00    -0.205 F 
+ATOM     11  C   UNL     1       2.112  28.014  24.466  0.00  0.00    +0.040 A 
+ATOM     12  C   UNL     1       3.316  27.674  25.052  0.00  0.00    +0.029 A 
+ENDBRANCH   5   6
+BRANCH   4  13
+ATOM     13  C   UNL     1       4.552  27.817  28.485  0.00  0.00    +0.131 C 
+ATOM     14  C   UNL     1       5.067  27.669  29.918  0.00  0.00    +0.072 C 
+BRANCH  13  15
+ATOM     15  N   UNL     1       3.082  27.659  28.486  0.00  0.00    +0.243 N 
+ATOM     16  H   UNL     1       2.805  27.126  27.662  0.00  0.00    +0.204 HD
+ATOM     17  C   UNL     1       2.654  26.927  29.697  0.00  0.00    +0.132 C 
+ATOM     18  C   UNL     1       1.148  26.673  29.617  0.00  0.00    +0.051 C 
+ATOM     19  C   UNL     1       0.413  28.014  29.538  0.00  0.00    +0.010 C 
+ATOM     20  C   UNL     1       0.918  28.794  28.321  0.00  0.00    +0.051 C 
+ATOM     21  C   UNL     1       2.432  28.987  28.439  0.00  0.00    +0.132 C 
+ENDBRANCH  13  15
+ENDBRANCH   4  13
+BRANCH   1  22
+ATOM     22  S   UNL     1       5.361  24.278  24.600  0.00  0.00    -0.076 S 
+BRANCH  22  23
+ATOM     23  C   UNL     1       7.040  24.418  23.936  0.00  0.00    +0.173 C 
+BRANCH  23  26
+ATOM     24  N   UNL     1       8.501  22.541  23.260  0.00  0.00    -0.308 N 
+ATOM     25  H   UNL     1       8.508  22.917  22.351  0.00  0.00    +0.149 HD
+ATOM     26  C   UNL     1       7.806  23.156  24.238  0.00  0.00    +0.224 C 
+ATOM     27  O   UNL     1       7.797  22.694  25.358  0.00  0.00    -0.275 OA
+BRANCH  24  29
+ATOM     28  C   UNL     1      10.727  21.529  23.233  0.00  0.00    +0.033 C 
+ATOM     29  C   UNL     1       9.246  21.314  23.553  0.00  0.00    +0.107 C 
+BRANCH  29  30
+ATOM     30  C   UNL     1       8.708  20.187  22.710  0.00  0.00    +0.010 A 
+ATOM     31  C   UNL     1       9.385  19.213  22.053  0.00  0.00    +0.013 A 
+ATOM     32  C   UNL     1       8.674  18.269  21.337  0.00  0.00    +0.008 A 
+ATOM     33  C   UNL     1       7.321  18.350  21.304  0.00  0.00    +0.045 A 
+ATOM     34  S   UNL     1       7.013  19.790  22.313  0.00  0.00    -0.100 S 
+ENDBRANCH  29  30
+ENDBRANCH  24  29
+ENDBRANCH  23  26
+ENDBRANCH  22  23
+ENDBRANCH   1  22
+TORSDOF 8
+ENDMDL
