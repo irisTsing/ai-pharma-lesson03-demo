@@ -16,9 +16,14 @@ conda create -y -n vs python=3.10
 conda activate vs
 pip install numpy pandas scikit-learn matplotlib rdkit torch
 
-# 外部程序
-sudo apt install autodock-vina openbabel      # vina 与 obabel
-conda install -c conda-forge unidock          # demo 3 的 GPU 路径
+# Open Babel 与 Uni-Dock 用 conda 装，不需要 sudo
+conda install -c conda-forge openbabel unidock
+
+# AutoDock Vina 用官方预编译二进制，放进自己的 bin 目录，同样不需要 sudo
+mkdir -p ~/bin
+curl -L -o ~/bin/vina https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v1.2.5/vina_1.2.5_linux_x86_64
+chmod +x ~/bin/vina
+export PATH=$HOME/bin:$PATH
 ```
 
 没有 GPU 的机器也能跑，把下面命令里的 `--device cuda` 换成 `--device cpu` 即可，速度慢一些。
