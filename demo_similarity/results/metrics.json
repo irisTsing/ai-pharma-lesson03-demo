@@ -1,0 +1,143 @@
+{
+  "demo": "demo_similarity",
+  "method": "ECFP4 (Morgan r=2) + Tanimoto max over reference actives",
+  "device": "cuda",
+  "env": {
+    "python": "3.10.14",
+    "platform": "Linux-5.19.0-32-generic-x86_64-with-glibc2.39",
+    "device": "cuda",
+    "numpy": "1.26.4",
+    "rdkit": "2025.03.3",
+    "torch": "2.3.1+cu121",
+    "torch_cuda_build": "12.1",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA A800 80GB PCIe",
+    "gpu_capability": "8.0",
+    "gpu_total_mem_gb": 79.2,
+    "sklearn": "1.5.0"
+  },
+  "params": {
+    "device": "cuda",
+    "require_gpu": false,
+    "library": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/data/drd3_library_10k.csv",
+    "split": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/data/drd3_split.json",
+    "topk": 20,
+    "radius": 2,
+    "n_bits": 2048,
+    "torch_threads": 4,
+    "out_dir": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/demo_similarity/results"
+  },
+  "n_library": 10000,
+  "n_actives": 480,
+  "n_reference_actives": 10,
+  "timing_s": {
+    "fp_generation": 2.69,
+    "cpu_full_matrix_s": 0.037306,
+    "gpu_full_matrix_s": 0.221867,
+    "gpu_peak_mem_gb": 0.085079,
+    "fp_transfer_mb": 19.53125,
+    "max_abs_diff_cpu_vs_gpu": 0.0,
+    "speedup_cpu_over_gpu": 0.168147,
+    "total": 3.91
+  },
+  "test_split": {
+    "n": 2000,
+    "n_actives": 96,
+    "roc_auc": 0.9604587928921569,
+    "ef1": 20.833333333333332,
+    "ef5": 13.958333333333334,
+    "ef10": 8.125,
+    "topk_hits": {
+      "top10": 10,
+      "top20": 20,
+      "top50": 50
+    },
+    "baseline_active_rate": 0.048
+  },
+  "full_library": {
+    "n": 10000,
+    "n_actives": 480,
+    "roc_auc": 0.9327377669817928,
+    "ef1": 20.833333333333332,
+    "ef5": 13.583333333333334,
+    "ef10": 7.729166666666666,
+    "topk_hits": {
+      "top10": 10,
+      "top20": 20,
+      "top50": 50
+    },
+    "baseline_active_rate": 0.048
+  },
+  "top_hits_preview": [
+    {
+      "rank": 1,
+      "mol_id": "CHEMBL179351",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "O=C(NC/C=C/CN1CCN(c2cccc(Cl)c2Cl)CC1)c1ccc(-c2ncc[nH]2)cc1"
+    },
+    {
+      "rank": 2,
+      "mol_id": "CHEMBL569322",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "CCCN(CCN1CCN(c2nccc3ccccc23)CC1)C1CCc2ccc(O)cc2C1"
+    },
+    {
+      "rank": 3,
+      "mol_id": "CHEMBL94015",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "CCCN1COC[C@@H]2c3cc(O)ccc3OC[C@H]21"
+    },
+    {
+      "rank": 4,
+      "mol_id": "CHEMBL44558",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "c1ccc(N2CCOC3c4cccc5[nH]cc(c45)C[C@H]32)cc1"
+    },
+    {
+      "rank": 5,
+      "mol_id": "CHEMBL551959",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "CCCN(CCN1CCN(c2ccc3[nH]ccc3c2)CC1)C1CCc2ccc(O)cc2C1"
+    },
+    {
+      "rank": 6,
+      "mol_id": "CHEMBL543100",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "O=C1CCCCN1CCCCN1CC[C@@H]2C(C1)c1cc(F)ccc1N2c1ccc(F)cc1"
+    },
+    {
+      "rank": 7,
+      "mol_id": "CHEMBL307800",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "O=C(NCCCCN1CCN(c2cccc(Cl)c2Cl)CC1)C1c2ccccc2-c2ccccc21"
+    },
+    {
+      "rank": 8,
+      "mol_id": "CHEMBL16409",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "CCCN(CCC)C1Cc2ccc(O)cc2C1"
+    },
+    {
+      "rank": 9,
+      "mol_id": "CHEMBL544039",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "O=C(CCCN1CC[C@H]2[C@H](C1)c1cc(F)ccc1N2c1ccc(F)cc1)Nc1ccccc1"
+    },
+    {
+      "rank": 10,
+      "mol_id": "CHEMBL241210",
+      "label": "active",
+      "tanimoto_max": 1.0,
+      "smiles": "O=C(NCCN1CCN(c2cccc(Cl)c2Cl)CC1)c1ccc(C#Cc2ccccc2)cc1"
+    }
+  ]
+}

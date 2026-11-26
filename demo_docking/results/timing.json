@@ -1,0 +1,22 @@
+{
+  "device": "cuda",
+  "gpu_status": "ok",
+  "receptor_prep_s": null,
+  "ligand_prep_s": 0.03,
+  "vina": {
+    "n": 5,
+    "cpu": 2,
+    "exhaustiveness": 4,
+    "total_wall_s": 50.14,
+    "mean_s_per_ligand": 18.18
+  },
+  "unidock": {
+    "search_mode": "fast",
+    "n": 10,
+    "total_wall_s": 4.53,
+    "mean_s_per_ligand": 0.453,
+    "gpu_mem_limit_mb": 2500,
+    "speedup_vs_vina": 40.13
+  },
+  "total_s": 56.68
+}

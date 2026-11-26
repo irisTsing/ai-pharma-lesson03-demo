@@ -1,0 +1,11 @@
+mol_id,label,method,status,affinity,wall_s,wall_total_s,wall_per_lig_s,invalid_positive_score
+CHEMBL8514,1,unidock_fast,ok,-9.309,,4.53,0.453,False
+C39218205,0,unidock_fast,ok,-9.304,,4.53,0.453,False
+CHEMBL399164,1,unidock_fast,ok,-9.26,,4.53,0.453,False
+CHEMBL519240,1,unidock_fast,ok,-8.612,,4.53,0.453,False
+C66945038,0,unidock_fast,ok,-8.574,,4.53,0.453,False
+C13148479,0,unidock_fast,ok,-8.509,,4.53,0.453,False
+C25534482,0,unidock_fast,ok,-8.487,,4.53,0.453,False
+CHEMBL179351,1,unidock_fast,ok,-8.351,,4.53,0.453,False
+CHEMBL286252,1,unidock_fast,ok,-7.74,,4.53,0.453,False
+C07778731,0,unidock_fast,ok,-6.857,,4.53,0.453,False

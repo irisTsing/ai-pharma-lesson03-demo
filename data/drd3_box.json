@@ -1,0 +1,24 @@
+{
+  "center": [
+    8.478,
+    21.58,
+    23.906
+  ],
+  "crystal_ligand_extent": [
+    7.812,
+    12.187,
+    7.54
+  ],
+  "crystal_ligand_n_atoms": 52,
+  "size": [
+    20.0,
+    20.0,
+    20.0
+  ],
+  "target": "drd3",
+  "pocket_check": {
+    "receptor_atoms": 2118,
+    "min_dist_center_to_receptor_A": 3.286,
+    "n_receptor_atoms_within_10A": 177
+  }
+}

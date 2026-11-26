@@ -1,0 +1,26 @@
+{
+  "demo": "demo_pipeline",
+  "n_library": 221,
+  "n_actives": 139,
+  "baseline_active_rate": 0.629,
+  "top_frac": 0.1,
+  "n_coarse_kept": 22,
+  "recall_coarse_2d": 0.1583,
+  "recall_random_expected": 0.0995,
+  "topk": 20,
+  "topk_hits_full_docking": 17,
+  "topk_hits_coarse_then_docking": 20,
+  "topk_overlap": 3,
+  "metrics_docking": {
+    "ef1": 0.7949640287769785,
+    "ef5": 0.43361674296926095,
+    "roc_auc": 0.2983856816985436,
+    "ef1_2d": 1.589928057553957,
+    "ef5_2d": 1.589928057553957,
+    "roc_auc_2d": 0.9431479206878399
+  },
+  "per_docking_seconds_median": 41.02,
+  "cost_full_minutes": 151.1,
+  "cost_coarse_minutes": 15.0,
+  "runtime_s": 0.83
+}

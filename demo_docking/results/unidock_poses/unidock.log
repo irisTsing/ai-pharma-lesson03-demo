@@ -1,0 +1,120 @@
+Uni-Dock v1.2.0
+
+If you used Uni-Dock in your work, please cite:               
+ 
+Yu, Y., Cai, C., Wang, J., Bo, Z., Zhu, Z., & Zheng, H. (2023). 
+Uni-Dock: GPU-Accelerated Docking Enables Ultralarge Virtual Screening. 
+Journal of Chemical Theory and Computation.                    
+https://doi.org/10.1021/acs.jctc.2c01145                       
+
+Tang, S., Chen, R., Lin, M., Lin, Q., Zhu, Y., Ding, J., ... & Wu, J. (2022). 
+Accelerating autodock vina with gpus. Molecules, 27(9), 3041. 
+DOI 10.3390/molecules27093041                                 
+
+J. Eberhardt, D. Santos-Martins, A. F. Tillack, and S. Forli  
+AutoDock Vina 1.2.0: New Docking Methods, Expanded Force      
+Field, and Python Bindings, J. Chem. Inf. Model. (2021)       
+DOI 10.1021/acs.jcim.1c00203                                  
+
+O. Trott, A. J. Olson,                                        
+AutoDock Vina: improving the speed and accuracy of docking    
+with a new scoring function, efficient optimization and        
+multithreading, J. Comp. Chem. (2010)                         
+DOI 10.1002/jcc.21334                                         
+
+Please refer to https://github.com/dptech-corp/Uni-Dock/ for  
+bug reporting, license agreements, and more information.      
+
+Scoring function : vina
+Rigid receptor: /mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/data/drd3/receptor.pdbqt
+Grid center: X 8.478 Y 21.58 Z 23.906
+Grid size  : X 20 Y 20 Z 20
+Grid space : 0.375
+Exhaustiveness: 128
+CPU: 0
+Verbosity: 1
+
+Computing Vina grid ... done.
+Total ligands: 10
+Set GPU device id to 0
+Available Memory = 80609MiB   Total Memory = 81050MiB
+all_ligands.size():10
+max_num_atoms:35
+max_num_torsions:9
+max_num_rigids:3
+max_num_lig_pairs:357
+Small Group:
+Max num_atoms: 31 Max num_torsions: 8 Max num_rigids: 2 Max num_lig_pairs: 263
+Group size: 7
+Medium Group:
+Max num_atoms: 35 Max num_torsions: 9 Max num_rigids: 3 Max num_lig_pairs: 357
+Group size: 3
+Large Group:
+Extra Large Group:
+Small
+Max num_atoms: 31 Max num_torsions: 8 Max num_rigids: 2 Max num_lig_pairs: 263
+Group size: 7
+Small Batch 1 size: 7
+Performing docking (random seed: 2024) ... Time spend on GPU is 324.305756 ms
+CUDA Kernel running time: 397
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -9.304          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -6.857          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1        -7.74          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -9.309          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -8.574          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -8.612          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -8.509          0          0
+poses saveing time: 11
+Batch 1 running time: 1489ms
+Medium
+Max num_atoms: 35 Max num_torsions: 9 Max num_rigids: 3 Max num_lig_pairs: 357
+Group size: 3
+Medium Batch 1 size: 3
+Performing docking (random seed: 2024) ... Time spend on GPU is 259.066254 ms
+CUDA Kernel running time: 369
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1        -9.26          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -8.487          0          0
+
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -8.351          0          0
+poses saveing time: 7
+Batch 1 running time: 1555ms
+

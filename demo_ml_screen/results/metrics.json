@@ -1,0 +1,244 @@
+{
+  "demo": "demo_ml_screen",
+  "device": "cuda",
+  "env": {
+    "python": "3.10.14",
+    "platform": "Linux-5.19.0-32-generic-x86_64-with-glibc2.39",
+    "device": "cuda",
+    "numpy": "1.26.4",
+    "rdkit": "2025.03.3",
+    "torch": "2.3.1+cu121",
+    "torch_cuda_build": "12.1",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA A800 80GB PCIe",
+    "gpu_capability": "8.0",
+    "gpu_total_mem_gb": 79.2,
+    "sklearn": "1.5.0"
+  },
+  "params": {
+    "device": "cuda",
+    "require_gpu": false,
+    "library": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/data/drd3_library_10k.csv",
+    "split": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/data/drd3_split.json",
+    "n_trees": 300,
+    "epochs": 30,
+    "batch_size": 512,
+    "hidden": 512,
+    "lr": 0.001,
+    "n_jobs": 4,
+    "torch_threads": 4,
+    "out_dir": "/mnt/sdb/iris/Project/daily/AI药学实践/demos/demo_vs/demo_ml_screen/results"
+  },
+  "splits": {
+    "scaffold": {
+      "name": "scaffold",
+      "train": 8000,
+      "test": 2000,
+      "train_actives": 384,
+      "test_actives": 96,
+      "train_active_rate": 0.048,
+      "test_active_rate": 0.048
+    },
+    "random": {
+      "name": "random",
+      "train": 8000,
+      "test": 2000,
+      "train_actives": 384,
+      "test_actives": 96,
+      "train_active_rate": 0.048,
+      "test_active_rate": 0.048
+    }
+  },
+  "results": {
+    "rf_scaffold": {
+      "n": 2000,
+      "n_actives": 96,
+      "roc_auc": 0.9996608018207283,
+      "ef1": 20.833333333333332,
+      "ef5": 19.583333333333332,
+      "ef10": 10.0,
+      "topk_hits": {
+        "top20": 20,
+        "top50": 50,
+        "top100": 94
+      },
+      "method": "RandomForest",
+      "test_n": 2000,
+      "test_actives": 96,
+      "baseline_active_rate": 0.048,
+      "timing": {
+        "train_s": 2.5,
+        "infer_library_s": 0.229
+      }
+    },
+    "mlp_scaffold": {
+      "n": 2000,
+      "n_actives": 96,
+      "roc_auc": 0.9964329481792717,
+      "ef1": 20.833333333333332,
+      "ef5": 19.791666666666664,
+      "ef10": 9.895833333333332,
+      "topk_hits": {
+        "top20": 20,
+        "top50": 50,
+        "top100": 95
+      },
+      "method": "MLP",
+      "test_n": 2000,
+      "test_actives": 96,
+      "baseline_active_rate": 0.048,
+      "timing": {
+        "epochs": 30,
+        "first_epoch_s": 0.265,
+        "mean_epoch_s": 0.029,
+        "total_train_s": 0.86,
+        "peak_gpu_mem_gb": 0.098,
+        "infer_library_s": 0.04,
+        "first_loss": 0.8225
+      }
+    },
+    "rf_random": {
+      "n": 2000,
+      "n_actives": 96,
+      "roc_auc": 0.9986158525910364,
+      "ef1": 20.833333333333332,
+      "ef5": 19.375,
+      "ef10": 10.0,
+      "topk_hits": {
+        "top20": 20,
+        "top50": 50,
+        "top100": 93
+      },
+      "method": "RandomForest",
+      "test_n": 2000,
+      "test_actives": 96,
+      "baseline_active_rate": 0.048,
+      "timing": {
+        "train_s": 2.46,
+        "infer_library_s": 0.204
+      }
+    },
+    "mlp_random": {
+      "n": 2000,
+      "n_actives": 96,
+      "roc_auc": 0.9976584383753502,
+      "ef1": 20.833333333333332,
+      "ef5": 19.583333333333332,
+      "ef10": 9.895833333333332,
+      "topk_hits": {
+        "top20": 20,
+        "top50": 50,
+        "top100": 94
+      },
+      "method": "MLP",
+      "test_n": 2000,
+      "test_actives": 96,
+      "baseline_active_rate": 0.048,
+      "timing": {
+        "epochs": 30,
+        "first_epoch_s": 0.042,
+        "mean_epoch_s": 0.044,
+        "total_train_s": 1.31,
+        "peak_gpu_mem_gb": 0.098,
+        "infer_library_s": 0.041,
+        "first_loss": 0.8136
+      }
+    },
+    "similarity_ecfp4": {
+      "n": 2000,
+      "n_actives": 96,
+      "roc_auc": 0.9604587928921569,
+      "ef1": 20.833333333333332,
+      "ef5": 13.958333333333334,
+      "ef10": 8.125,
+      "topk_hits": {
+        "top20": 20,
+        "top50": 50,
+        "top100": 67
+      },
+      "method": "Tanimoto (demo 1)",
+      "test_n": 2000,
+      "test_actives": 96,
+      "baseline_active_rate": 0.048
+    },
+    "random_baseline": {
+      "method": "random",
+      "roc_auc": 0.5,
+      "ef1": 1.0,
+      "ef5": 1.0,
+      "ef10": 1.0,
+      "topk_hits": {
+        "top20": 0.96,
+        "top50": 2.4,
+        "top100": 4.8
+      },
+      "test_n": 2000,
+      "test_actives": 96
+    }
+  },
+  "comparison_table": [
+    {
+      "method": "随机排序",
+      "roc_auc": 0.5,
+      "ef1": 1.0,
+      "ef5": 1.0,
+      "ef10": 1.0,
+      "top20_hits": 0.96,
+      "top50_hits": 2.4,
+      "top100_hits": 4.8
+    },
+    {
+      "method": "Tanimoto 相似性（demo 1）",
+      "roc_auc": 0.9605,
+      "ef1": 20.83,
+      "ef5": 13.96,
+      "ef10": 8.12,
+      "top20_hits": 20,
+      "top50_hits": 50,
+      "top100_hits": 67
+    },
+    {
+      "method": "随机森林（scaffold 划分）",
+      "roc_auc": 0.9997,
+      "ef1": 20.83,
+      "ef5": 19.58,
+      "ef10": 10.0,
+      "top20_hits": 20,
+      "top50_hits": 50,
+      "top100_hits": 94
+    },
+    {
+      "method": "MLP（cuda，scaffold 划分）",
+      "roc_auc": 0.9964,
+      "ef1": 20.83,
+      "ef5": 19.79,
+      "ef10": 9.9,
+      "top20_hits": 20,
+      "top50_hits": 50,
+      "top100_hits": 95
+    },
+    {
+      "method": "随机森林（随机划分）",
+      "roc_auc": 0.9986,
+      "ef1": 20.83,
+      "ef5": 19.38,
+      "ef10": 10.0,
+      "top20_hits": 20,
+      "top50_hits": 50,
+      "top100_hits": 93
+    },
+    {
+      "method": "MLP（cuda，随机划分）",
+      "roc_auc": 0.9977,
+      "ef1": 20.83,
+      "ef5": 19.58,
+      "ef10": 9.9,
+      "top20_hits": 20,
+      "top50_hits": 50,
+      "top100_hits": 94
+    }
+  ],
+  "timing_s": {
+    "total": 11.94
+  }
+}
