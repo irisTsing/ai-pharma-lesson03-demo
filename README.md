@@ -3,6 +3,67 @@
 本目录是"AI 药学实践"第三讲的课堂 demo 套件，主题是"基于特征的快速药物筛选方法"与"基于结构的药物筛选方法"。
 所有指标来自真实运行；开发机配有 4 张 NVIDIA A800，GPU 路径（demo 1/2/3）已在本机实测跑通，3090 上的表现需要课前在 gpu1 再确认一次。
 
+## 0. 完整运行步骤
+
+仓库里已经带好数据和预计算好的对接分数，clone 下来就能跑。下面是从环境到五个环节全部跑完的顺序。
+
+### 0.1 装环境
+
+```bash
+conda create -y -n vs python=3.10
+conda activate vs
+pip install numpy pandas scikit-learn matplotlib rdkit torch
+
+# 外部程序
+sudo apt install autodock-vina openbabel      # vina 与 obabel
+conda install -c conda-forge unidock          # demo 3 的 GPU 路径
+```
+
+没有 GPU 的机器也能跑，把下面命令里的 `--device cuda` 换成 `--device cpu` 即可，速度慢一些。
+
+### 0.2 依次跑五个环节
+
+```bash
+# 环节 0：确认能看到 GPU、torch 能用
+bash demo_gpu_env/check_gpu.sh
+
+# 环节 1：相似性检索，输出 EF1% 与富集曲线（约 4 秒）
+bash demo_similarity/run_demo.sh --device cuda
+
+# 环节 2：机器学习打分，输出随机森林与 MLP 的对照表（约 20 秒）
+bash demo_ml_screen/run_demo.sh --device cuda
+
+# 环节 3：GPU 对接，Uni-Dock 10 个配体 + vina CPU 5 个对照（约 1 分钟）
+bash demo_docking/run_demo.sh --device cuda
+
+# 环节 4：逐级筛选，读仓库里算好的 1,981 个分子分数表（约 2 秒）
+bash demo_pipeline/run_demo.sh
+```
+
+### 0.3 每个环节的产物
+
+| 环节 | 输出去向 | 关键文件 |
+| --- | --- | --- |
+| 0 | 屏幕 | 显卡列表、torch 自检结果 |
+| 1 | `demo_similarity/results/` | `metrics.json`、`top_hits.csv`、`enrichment_curve.png` |
+| 2 | `demo_ml_screen/results/` | `comparison_table.csv`、`enrichment_ml.png` |
+| 3 | `demo_docking/results/` | `docking_scores.csv`、`compare_cpu_gpu.csv`、`timing.json`、`poses/` |
+| 4 | `demo_pipeline/results/` | `strategy_comparison.csv`、`pipeline_summary.json`、`pipeline_plot.png` |
+
+### 0.4 需要重新算数据时
+
+仓库里的 `data/` 已含 DUD-E 原始文件与配体构象，正常不用重跑。要换靶点或重建时按顺序：
+
+```bash
+bash data/download_data.sh                    # 下载并解压 DUD-E（约 66 MB）
+python common/prepare_data.py                 # 建库、划分、对接盒子
+python common/ligand_prep.py                  # 配体 3D 构象与 pdbqt
+bash common/prepare_receptor.sh               # 受体 pdbqt
+
+# 重跑 demo 4 的全库对接分数（GPU，约 2 分钟）
+python demo_pipeline/precompute_docking.py --method unidock --search-mode fast --chunk 500 --unidock-mem-mb 3000
+```
+
 ## 1. demo 清单与一行命令
 
 | # | 目录 | 方法 | 一行命令 | 课堂限时 |
@@ -36,7 +97,7 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 - 盒子：`data/drd3_box.json`，晶体配体质心 (8.478, 21.580, 23.906)，20×20×20 Å。
 - 配体 3D 构象与 pdbqt：`data/dock_ligands/`（1,981/2,000 个准备成功，其余 19 个是互变异构体不一致，已排除并记录）。
 
-## 3. 教师课前预计算清单（学生只需要跑后面的部分）
+## 3. 预计算清单（需要重跑时用）
 
 | 步骤 | 命令 | 实测耗时（本机） | 产物 |
 | --- | --- | --- | --- |
