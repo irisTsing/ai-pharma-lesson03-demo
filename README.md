@@ -125,7 +125,6 @@ bash demos/demo_vs/demo_gpu_env/check_gpu.sh
 | 39–44 min | 讲评：EF1% 饱和、DUD-E analog bias、对接打分重叠、GPU 使用规范 | 教师 |
 | 44–50 min | 自由尝试：改参数（`--topk`、`--epochs`、`--unidock-mode`、盒子大小） | 学生 |
 
-每组指定 1 名组长，负责在组内跑一次并把 `results/` 里的数字投屏对照。
 
 ## 5. 实测数字汇总（开发机，CPU 与 GPU 均已实测）
 

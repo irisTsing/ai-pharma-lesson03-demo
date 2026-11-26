@@ -119,7 +119,7 @@ bash demo_docking/run_demo.sh --device cpu
 
 ## 5. 课堂上可以改的参数
 
-- `--n-ligands 10`：配体数，10 个是课堂限时 10 分钟的上限。
+- `--n-ligands 10`：配体数，默认 10 个。
 - `--unidock-mode fast|balance|detail`：搜索强度与耗时同步上升，fast 是课堂默认。
 - `--unidock-mem-mb 2500`：显存上限，同卡人多时减小（如 1500）。
 - `--vina-n 5`、`--vina-cpu 2`、`--vina-exhaustiveness 4`：CPU 对照的规模与预算。
